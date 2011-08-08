@@ -36,7 +36,8 @@ module Sunspot
       end
 
       def load_all(ids)
-        @clazz.where(:_id.in => ids.map { |id| BSON::ObjectId.from_string(id) })
+        #@clazz.where(:_id.in => ids.map { |id| BSON::ObjectId.from_string(id) })
+        @clazz.where(:_id => {'$in' => ids.map { |id| BSON::ObjectId.from_string(id) } })
       end
       
     end
